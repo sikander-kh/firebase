@@ -33,7 +33,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     private void sendRegistrationToServer(String token)
     {
 
-        new DevicePreferences().addKey(context, Constants.FIREBASE_TOKEN, token);
+        new DevicePreferences().addKey(this, Constants.FIREBASE_TOKEN, token);
 
         //You can implement this method to store the token on your server
         //Not required for current project
