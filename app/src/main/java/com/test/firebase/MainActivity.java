@@ -20,9 +20,7 @@ import com.test.firebase.utils.DevicePreferences;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-    private Button buttonLogin;
+    private Button generateToken;
 
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -32,39 +30,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById();
-        logIn();
+        listeners();
     }
 
     private void findViewById()
     {
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        generateToken = (Button) findViewById(R.id.buttonLogin);
     }
 
-    private void logIn()
+    private void listeners()
     {
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        generateToken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String email = editTextEmail.getText().toString();
-                String password = editTextPassword.getText().toString();
                 String firebase_token = new DevicePreferences().getString(MainActivity.this, Constants.FIREBASE_TOKEN);
 
-                if (email.equalsIgnoreCase(""))
-                {
-                    Toast.makeText(MainActivity.this, "Please fill mail id",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.equalsIgnoreCase(""))
-                {
-                    Toast.makeText(MainActivity.this, "password empty",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Toast.makeText(MainActivity.this, email+"="+password +"="+firebase_token,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, firebase_token, Toast.LENGTH_SHORT).show();
             }
         });
     }
