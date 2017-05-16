@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById();
         logIn();
-
-
     }
 
     private void findViewById()
@@ -46,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void logIn()
     {
-
-
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +51,18 @@ public class MainActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
                 String firebase_token = new DevicePreferences().getString(MainActivity.this, Constants.FIREBASE_TOKEN);
+
+                if (email.equalsIgnoreCase(""))
+                {
+                    Toast.makeText(MainActivity.this, "Please fill mail id",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (password.equalsIgnoreCase(""))
+                {
+                    Toast.makeText(MainActivity.this, "password empty",Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Toast.makeText(MainActivity.this, email+"="+password +"="+firebase_token,Toast.LENGTH_SHORT).show();
             }
